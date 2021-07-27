@@ -78,6 +78,28 @@ export const constantRoutes = [
   },
 
   {
+    path: '/opreation',
+    component: Layout,
+    redirect: '/opreation/roles',
+    name: 'Opreation',
+    meta: { title: 'opreation', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'roles',
+        name: 'Roles',
+        component: () => import('@/views/roles/index'),
+        meta: { title: 'Roles', icon: 'table' }
+      },
+      {
+        path: 'tree',
+        name: 'Tree',
+        component: () => import('@/views/tree/index'),
+        meta: { title: 'Tree', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
     path: '/form',
     component: Layout,
     children: [
@@ -173,7 +195,7 @@ const createRouter = () => new Router({
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
-export function resetRouter() {
+export function resetRouter () {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
 }
